@@ -2,24 +2,29 @@
 
 ### Install Kind
 
-*need docker run*
+_need docker run_
 
 `curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64`
+
 `chmod +x ./kind`
+
 `mv ./kind /usr/local/bin/`
 
 ### Create Cluster
 
 `kind create cluster --name=lab --config cluster.yaml`
+
 OR
+
 `kind create cluster --name=lab`
 
 ### install metalLB
 
 `kubectl create ns metallb-system`
+
 `kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/main/manifests/metallb.yaml`
 
-###### Range IP of kind controlplane  put in metallb-config.yaml
+###### Range IP of kind controlplane put in metallb-config.yaml
 
 `docker inspect lab-control-plane --format '{{.NetworkSettings.Networks.kind.IPAddress}}'`
 
@@ -34,4 +39,3 @@ OR
 ###### ~~install kind with contour (OPTIONAL)~~
 
 https://projectcontour.io/kindly-running-contour/
-
