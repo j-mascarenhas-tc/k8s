@@ -1,0 +1,38 @@
+{
+  "tc": "hml",
+  "docs": {
+    "key": "secret"
+  },
+  "server": {
+    "port": ":5055"
+  },
+  "database": {
+    "writer": {
+      "url": "my_ser:my_password@tcp($mysql_tcserver$)/my_database?charset=utf8mb4,utf8\\u0026readTimeout=30s\\u0026writeTimeout=30s&parseTime=true"
+    },
+    "reader": {
+      "url": "my_ser:my_password@tcp($mysql_tcserver_replica$)/my_database?charset=utf8mb4,utf8\\u0026readTimeout=30s\\u0026writeTimeout=30s&parseTime=true"
+    }
+  },
+  "cache": {
+    "url": "$memcached_sessions$",
+    "expiration": 0
+  },
+  "natssecure": {
+    "url": "$nats_secure$",
+    "name": "global"
+  },
+  "auth": {
+    "addr": "tcauth",
+    "port": "50051",
+    "timeout": "5s"
+  },
+  "remote": {
+    "replace": [
+      "/servers/nats_secure",
+      "/servers/mysql_tcserver",
+      "/servers/mysql_tcserver_replica",
+      "/servers/memcached_sessions"
+    ]
+  }
+}
